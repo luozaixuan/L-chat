@@ -2,4 +2,5 @@ server_addr = "127.0.0.1"
 server_port = 8080
 local_port = 8081
 username = "User1"
+password = "password123"
 room_key = "my_secure_key"

@@ -8,6 +8,8 @@
 #include <sstream>
 #include <chrono>
 
+#define VERSION "1.0.0"
+
 // 跨平台支持
 #ifdef _WIN32
     #include <winsock2.h>
@@ -44,6 +46,7 @@ private:
     int server_port;
     int local_port;
     std::string username;
+    std::string password;
     std::string room_key;
     socket_t server_socket;
     socket_t local_server_socket;
@@ -65,6 +68,7 @@ public:
         server_port = config.get_int("server_port", 8080);
         local_port = config.get_int("local_port", 8081);
         username = config.get("username", "Anonymous");
+        password = config.get("password", "");
         room_key = config.get("room_key", "default_key");
     }
 
@@ -106,8 +110,11 @@ public:
             return false;
         }
 
+        // 发送房间密钥
         send(server_socket, room_key.c_str(), room_key.size(), 0);
-        send(server_socket, username.c_str(), username.size(), 0);
+        // 发送用户名和密码，用换行符分隔
+        std::string user_pass = username + "\n" + password;
+        send(server_socket, user_pass.c_str(), user_pass.size(), 0);
 
         // 检查密钥是否有效
         char buffer[1024];
@@ -123,6 +130,18 @@ public:
             }
             if (response == "ERROR: Username already exists") {
                 std::cerr << "ERROR: Username already exists" << std::endl;
+                CLOSE_SOCKET(server_socket);
+                CLEANUP_NETWORK;
+                return false;
+            }
+            if (response == "ERROR: Missing username or password") {
+                std::cerr << "ERROR: Missing username or password" << std::endl;
+                CLOSE_SOCKET(server_socket);
+                CLEANUP_NETWORK;
+                return false;
+            }
+            if (response == "ERROR: Invalid username or password") {
+                std::cerr << "ERROR: Invalid username or password" << std::endl;
                 CLOSE_SOCKET(server_socket);
                 CLEANUP_NETWORK;
                 return false;
@@ -309,6 +328,9 @@ public:
 };
 
 int main(int argc, char* argv[]) {
+    // 输出版本信息
+    std::cout << "L-chat version: " << VERSION << std::endl;
+    
     std::string config_file = "config/client-deamon.toml";
     bool sync_history = false;
     

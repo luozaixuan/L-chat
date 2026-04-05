@@ -3,6 +3,8 @@
 #include <thread>
 #include <string>
 
+#define VERSION "1.0.0"
+
 // 跨平台支持
 #ifdef _WIN32
     #include <winsock2.h>
@@ -171,6 +173,9 @@ public:
 };
 
 int main(int argc, char* argv[]) {
+    // 输出版本信息
+    std::cout << "L-chat version: " << VERSION << std::endl;
+    
     std::string config_file = "config/client-ui.toml";
     
     ClientUI ui(config_file);

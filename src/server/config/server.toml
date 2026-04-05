@@ -1,3 +1,6 @@
 port = 8080
 room_name = "My Chat Room"
 room_key = "my_secure_key"
+[users]
+luozaixuan = "luozaixuan"
+zqf = "zqf"

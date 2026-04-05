@@ -8,6 +8,9 @@
 #include <string>
 #include <sstream>
 #include <chrono>
+#include <map>
+
+#define VERSION "1.0.0"
 
 // 跨平台支持
 #ifdef _WIN32
@@ -54,6 +57,7 @@ private:
     socket_t server_socket;
     std::vector<socket_t> clients;
     std::vector<std::string> usernames;
+    std::map<std::string, std::string> user_passwords;
     std::mutex clients_mutex;
     ChatStorage storage;
 
@@ -68,6 +72,16 @@ public:
         port = config.get_int("port", 8080);
         room_name = config.get("room_name", "Default Room");
         room_key = config.get("room_key", "default_key");
+        
+        // 加载用户密码映射
+        std::vector<std::string> user_keys = config.get_keys("users");
+        for (const auto& key : user_keys) {
+            std::string user = key;
+            std::string password = config.get("users." + key, "");
+            if (!user.empty() && !password.empty()) {
+                user_passwords[user] = password;
+            }
+        }
     }
 
     void start() {
@@ -147,6 +161,7 @@ public:
     void handle_client(socket_t client_socket) {
         char buffer[1024];
         std::string user;
+        std::string password;
 
         int bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
         if (bytes_received > 0) {
@@ -157,20 +172,56 @@ public:
                 return;
             }
             
-            if (bytes_received > (int)room_key.size()) {
-                user = std::string(buffer + room_key.size(), bytes_received - room_key.size());
+            // 提取用户名和密码
+            int offset = room_key.size();
+            if (bytes_received > offset) {
+                // 查找用户名和密码的分隔符
+                std::string data(buffer + offset, bytes_received - offset);
+                size_t sep_pos = data.find('\n');
+                if (sep_pos != std::string::npos) {
+                    user = data.substr(0, sep_pos);
+                    password = data.substr(sep_pos + 1);
+                } else {
+                    // 可能需要继续接收数据
+                    user = data;
+                    bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
+                    if (bytes_received > 0) {
+                        password = std::string(buffer, bytes_received);
+                    }
+                }
             } else {
+                // 接收用户名
                 bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
                 if (bytes_received > 0) {
                     user = std::string(buffer, bytes_received);
                 }
+                // 接收密码
+                bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
+                if (bytes_received > 0) {
+                    password = std::string(buffer, bytes_received);
+                }
             }
+        }
+
+        // 验证用户名和密码
+        if (user.empty() || password.empty()) {
+            send(client_socket, "ERROR: Missing username or password", 33, 0);
+            CLOSE_SOCKET(client_socket);
+            return;
+        }
+        
+        // 检查用户密码是否正确
+        auto it = user_passwords.find(user);
+        if (it == user_passwords.end() || it->second != password) {
+            send(client_socket, "ERROR: Invalid username or password", 33, 0);
+            CLOSE_SOCKET(client_socket);
+            return;
         }
 
         {
             std::lock_guard<std::mutex> lock(clients_mutex);
-            auto it = std::find(usernames.begin(), usernames.end(), user);
-            if (it != usernames.end()) {
+            auto user_it = std::find(usernames.begin(), usernames.end(), user);
+            if (user_it != usernames.end()) {
                 send(client_socket, "ERROR: Username already exists", 27, 0);
                 CLOSE_SOCKET(client_socket);
                 return;
@@ -253,6 +304,9 @@ void signal_handler(int signum) {
 #endif
 
 int main(int argc, char* argv[]) {
+    // 输出版本信息
+    std::cout << "L-chat version: " << VERSION << std::endl;
+    
     // 设置信号处理
     #ifdef _WIN32
         SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);

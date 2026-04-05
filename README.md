@@ -10,6 +10,8 @@
 - **聊天历史记录**：使用 XML 文件存储聊天记录
 - **历史记录同步**：客户端可以从服务器同步全部聊天记录
 - **配置文件**：使用 TOML 配置文件管理设置
+- **信号处理**：服务器能够在客户端断开连接后继续运行
+- **用户名冲突检测**：服务器会拒绝重复的用户名连接
 
 ## 组件说明
 
@@ -19,13 +21,15 @@
 - 处理客户端连接
 - 广播消息
 - 存储聊天历史
+- 支持从服务器同步历史记录
 
 ### 2. 客户端守护进程 (client-deamon)
 - 连接到服务器
 - 本地启动一个服务器供客户端 UI 连接
 - 处理服务器消息和 UI 消息
 - 存储聊天历史
-- 支持从服务器同步历史记录
+- 支持从服务器同步历史记录（使用 `-s` 参数）
+- 同步历史记录前会自动清除本地历史记录
 
 ### 3. 客户端 UI (client-ui)
 - 连接到客户端守护进程
@@ -37,13 +41,22 @@
 
 ### 1. 编译项目
 
-#### Windows
+#### Windows (MinGW)
 ```bash
 # 使用 MinGW 编译
 $env:PATH += ";D:\gitwork\L-chat\w64devkit\bin"
 D:\gitwork\L-chat\w64devkit\bin\g++.exe -std=c++11 -Iinclude src/config_parser.cpp src/chat_storage.cpp src/server/server.cpp -o src\server\server.exe -lws2_32
 D:\gitwork\L-chat\w64devkit\bin\g++.exe -std=c++11 -Iinclude src/config_parser.cpp src/chat_storage.cpp src/client-deamon/client-deamon.cpp -o src\client-deamon\client-deamon.exe -lws2_32
 D:\gitwork\L-chat\w64devkit\bin\g++.exe -std=c++11 -Iinclude src/config_parser.cpp src/client-ui/client-ui.cpp -o src\client-ui\client-ui.exe -lws2_32
+```
+
+#### Windows (MSVC)
+```bash
+# 使用 Visual Studio Developer Command Prompt
+cd /d D:\gitwork\L-chat
+cl /EHsc /Iinclude src/config_parser.cpp src/chat_storage.cpp src/server/server.cpp /link ws2_32.lib /OUT:server.exe
+cl /EHsc /Iinclude src/config_parser.cpp src/chat_storage.cpp src/client-deamon/client-deamon.cpp /link ws2_32.lib /OUT:client-deamon.exe
+cl /EHsc /Iinclude src/config_parser.cpp src/client-ui/client-ui.cpp /link ws2_32.lib /OUT:client-ui.exe
 ```
 
 #### Linux
@@ -94,9 +107,13 @@ cd src/client-deamon
 ./client-deamon.exe  # Windows
 ./client-deamon      # Linux
 
-# 启动并同步历史记录
+# 启动并同步历史记录（会先清除本地历史记录）
 ./client-deamon.exe -s  # Windows
 ./client-deamon -s      # Linux
+
+# 指定配置文件
+./client-deamon.exe -c path/to/config.toml  # Windows
+./client-deamon -c path/to/config.toml      # Linux
 ```
 
 ### 3. 启动客户端 UI
@@ -109,7 +126,7 @@ cd src/client-ui
 ## 命令行参数
 
 ### 客户端守护进程参数
-- `-s` 或 `--sync-history`：启动时从服务器同步全部聊天记录
+- `-s` 或 `--sync-history`：启动时从服务器同步全部聊天记录（会先清除本地历史记录）
 - `-c` 或 `--config`：指定配置文件路径
 
 ## 目录结构
@@ -141,7 +158,8 @@ L-chat/
 1. 确保配置文件中的 `room_key` 与服务器一致，否则客户端无法连接
 2. 用户名不能重复，否则会被服务器拒绝连接
 3. 聊天历史记录存储在 `storage/` 目录下的 XML 文件中
-4. 客户端守护进程启动时使用 `-s` 参数可以从服务器同步所有历史记录
+4. 客户端守护进程启动时使用 `-s` 参数可以从服务器同步所有历史记录，并会先清除本地历史记录
+5. 服务器会在客户端断开连接后继续运行，等待新的客户端连接
 
 ## 故障排除
 
@@ -149,6 +167,7 @@ L-chat/
 - **密钥错误**：确保客户端和服务器的 `room_key` 一致
 - **用户名已存在**：更换一个不同的用户名
 - **历史记录同步失败**：确保服务器正在运行，网络连接正常
+- **服务器退出**：检查是否有其他进程或服务终止了服务器进程
 
 ## 许可证
 

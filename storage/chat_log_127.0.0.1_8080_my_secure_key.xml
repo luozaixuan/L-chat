@@ -1,0 +1,37 @@
+<chat_log>
+  <message>
+    <id>1</id>
+    <user>SYSTEM</user>
+    <message>User1joinedthechat</message>
+    <timestamp>2026-04-0412:47:00</timestamp>
+    <room_name>DefaultRoom</room_name>
+  </message>
+  <message>
+    <id>2</id>
+    <user>User1</user>
+    <message>s</message>
+    <timestamp>2026-04-0412:49:17</timestamp>
+    <room_name>DefaultRoom</room_name>
+  </message>
+  <message>
+    <id>3</id>
+    <user>User1</user>
+    <message>s</message>
+    <timestamp>2026-04-0412:49:18</timestamp>
+    <room_name>DefaultRoom</room_name>
+  </message>
+  <message>
+    <id>4</id>
+    <user>User1</user>
+    <message>s</message>
+    <timestamp>2026-04-0412:49:19</timestamp>
+    <room_name>DefaultRoom</room_name>
+  </message>
+  <message>
+    <id>5</id>
+    <user>User1</user>
+    <message>s</message>
+    <timestamp>2026-04-04 12:49:20</timestamp>
+    <room_name>Default Room</room_name>
+  </message>
+</chat_log>

@@ -1,0 +1,2 @@
+deamon_addr = "127.0.0.1"
+deamon_port = 8081

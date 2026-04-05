@@ -1,0 +1,310 @@
+<chat_log>
+  <message>
+    <id>6</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:36:33</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>7</id>
+    <user>SYSTEM</user>
+    <message>User1 joined the chat</message>
+    <timestamp>2026-04-04 20:36:41</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>8</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:37:17</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>9</id>
+    <user>SYSTEM</user>
+    <message>User1 joined the chat</message>
+    <timestamp>2026-04-04 20:37:18</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>10</id>
+    <user>User1</user>
+    <message>1231231313213</message>
+    <timestamp>2026-04-04 20:37:27</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>11</id>
+    <user>User1</user>
+    <message>1232131231</message>
+    <timestamp>2026-04-04 20:37:28</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>12</id>
+    <user>User1</user>
+    <message>123123123</message>
+    <timestamp>2026-04-04 20:37:29</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>13</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:37:31</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>14</id>
+    <user>SYSTEM</user>
+    <message>User1 joined the chat</message>
+    <timestamp>2026-04-04 20:37:38</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>15</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:38:10</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>16</id>
+    <user>SYSTEM</user>
+    <message>User1 joined the chat</message>
+    <timestamp>2026-04-04 20:38:24</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>17</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:38:49</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>18</id>
+    <user>SYSTEM</user>
+    <message>User1 joined the chat</message>
+    <timestamp>2026-04-04 20:38:50</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>19</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:39:01</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>20</id>
+    <user>SYSTEM</user>
+    <message>User1 joined the chat</message>
+    <timestamp>2026-04-04 20:41:11</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>21</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:41:25</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>22</id>
+    <user>SYSTEM</user>
+    <message>User1 joined the chat</message>
+    <timestamp>2026-04-04 20:41:26</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>23</id>
+    <user>SYSTEM</user>
+    <message>User1 left the chat</message>
+    <timestamp>2026-04-04 20:41:33</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>24</id>
+    <user>SYSTEM</user>
+    <message>luozaixuan joined the chat</message>
+    <timestamp>2026-04-04 22:01:13</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>25</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:27</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>26</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:28</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>27</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:28</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>28</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:29</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>29</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:29</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>30</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:29</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>31</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:29</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>32</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:30</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>33</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:30</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>34</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:30</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>35</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:31</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>36</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:31</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>37</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:31</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>38</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:31</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>39</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:37</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>40</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:38</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>41</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:38</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>42</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:38</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>43</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:39</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>44</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:39</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>45</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:39</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>46</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:40</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>47</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:40</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>48</id>
+    <user>luozaixuan</user>
+    <message>a</message>
+    <timestamp>2026-04-04 22:02:40</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+  <message>
+    <id>49</id>
+    <user>luozaixuan</user>
+    <message>aa</message>
+    <timestamp>2026-04-04 22:02:41</timestamp>
+    <room_name>MyChatRoom</room_name>
+  </message>
+</chat_log>

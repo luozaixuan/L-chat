@@ -1,0 +1,3 @@
+port = 8080
+room_name = "Test Room"
+room_key = "test_key"

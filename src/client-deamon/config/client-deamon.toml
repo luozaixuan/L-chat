@@ -1,0 +1,5 @@
+server_addr = "185.239.86.66"
+server_port = 8080
+local_port = 8081
+username = "zqf"
+room_key = "my_secure_key"

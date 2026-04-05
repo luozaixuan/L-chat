@@ -37,6 +37,100 @@
 - 显示聊天消息
 - 发送消息
 
+## 高解耦性设计
+
+本项目采用了高解耦的设计架构，具体表现为：
+
+1. **分层架构**：
+   - 服务器层：负责处理网络连接、消息广播和聊天历史存储
+   - 客户端守护进程层：负责连接服务器和本地 UI 客户端，处理消息转发
+   - UI 层：负责用户交互和界面展示
+
+2. **通信协议**：
+   - 客户端守护进程与服务器之间使用简单的文本协议
+   - 客户端 UI 与守护进程之间使用简单的文本协议
+
+3. **独立部署**：
+   - 三个组件可以独立部署和运行
+   - 客户端 UI 可以单独开发和替换
+
+4. **可扩展性**：
+   - 支持开发第三方客户端 UI
+   - 支持多种 UI 形式（命令行、GUI、Web 等）
+
+## 开发第三方客户端 UI
+
+如果您想开发自己的第三方客户端 UI，只需遵循以下步骤：
+
+### 1. 连接到客户端守护进程
+
+客户端守护进程默认在本地端口 8081 上运行（可在配置文件中修改）。您需要：
+
+- 创建一个 TCP 套接字连接到 `localhost:8081`
+- 实现与守护进程的通信协议
+
+### 2. 通信协议
+
+客户端 UI 与守护进程之间的通信协议非常简单：
+
+#### 获取服务器信息
+- 发送：`GET_SERVER_INFO`
+- 接收：`server_addr:server_port:room_key`（例如：`127.0.0.1:8080:my_secure_key`）
+
+#### 获取聊天历史
+- 发送：`GET_CHAT_HISTORY`
+- 接收：多条聊天记录，每条格式为 `timestamp user: message`，最后以 `HISTORY_END` 结束
+
+#### 发送消息
+- 发送：直接发送消息内容
+- 接收：无（消息会被转发到服务器）
+
+### 3. 示例代码
+
+以下是一个简单的 Python 客户端 UI 示例：
+
+```python
+import socket
+
+# 连接到客户端守护进程
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect(("localhost", 8081))
+
+# 获取服务器信息
+sock.send(b"GET_SERVER_INFO")
+server_info = sock.recv(1024).decode()
+print(f"Server info: {server_info}")
+
+# 获取聊天历史
+sock.send(b"GET_CHAT_HISTORY")
+history_data = ""
+while True:
+    data = sock.recv(1024).decode()
+    history_data += data
+    if "HISTORY_END" in history_data:
+        break
+history_data = history_data.replace("HISTORY_END", "")
+print("Chat history:")
+print(history_data)
+
+# 发送消息
+while True:
+    message = input("Enter message: ")
+    sock.send(message.encode())
+
+# 关闭连接
+sock.close()
+```
+
+### 4. 开发建议
+
+- **界面设计**：根据您的需求设计合适的界面，如命令行、GUI、Web 等
+- **错误处理**：添加适当的错误处理，确保客户端 UI 能够优雅处理连接失败等情况
+- **消息格式**：遵循守护进程的消息格式，确保与守护进程的通信正常
+- **用户体验**：添加消息提示、历史记录显示等功能，提升用户体验
+
+通过这种高解耦的设计，您可以轻松开发自己的客户端 UI，而不需要修改服务器或客户端守护进程的代码。
+
 ## 安装步骤
 
 ### 1. 编译项目
